@@ -1,0 +1,21 @@
+.loginWidgetWrapper {
+  background: #fbfbfb;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(40, 40, 40, 0.65);
+  padding: 40px;
+
+  min-width: 550px;
+  max-width: 550px;
+
+  min-height: 400px;
+  max-height: 400px;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  position: relative;
+}
+
+.loginWidgetForm {
+  display: flex;
+}

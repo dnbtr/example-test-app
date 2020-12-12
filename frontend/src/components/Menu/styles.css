@@ -1,0 +1,34 @@
+.logo {
+  max-width: 15%;
+  min-width: 15%;
+
+  padding: 10px;
+  margin: 20px;
+  margin-left: 80px;
+}
+
+.menu {
+  background: #19d3da;
+  
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  min-height: 100px;
+  max-height: 100px;
+}
+
+.logoutButtonWrapper {
+  background: #13d3da;
+  border-radius: 100%;
+  min-width: 72px;
+  min-height: 72px;
+
+  margin: 20px;
+  margin-right: 80px;
+}
+
+.logoutButtonWrapper>.logoutButton {
+  margin: 6px;
+}
