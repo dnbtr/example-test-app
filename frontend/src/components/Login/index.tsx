@@ -42,27 +42,6 @@ function Login() {
         </Form.Text>
       </Form>
     </Container>
-
-    /* 
-    <div className='loginWidgetWrapper'>
-      <form className='loginWidgetForm'>
-        <header>
-          <h1>ACADEMIIO</h1>
-          <p>Faça login para continuar</p>
-        </header>
-
-        <div>
-          Email <input type='text'></input>
-          Senha <input type='password'></input>
-        </div>
-        <div>
-          <input type='checkbox'></input> Me manter logado
-          <button>ENTRAR</button>
-          Ainda não tem uma conta? <a>Cadastre-se</a>
-        </div>
-      </form>
-    </div>
-     */
   );
 }
 
