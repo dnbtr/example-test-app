@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
+});
+
 const Express = require('express');
 
 /* 
@@ -5,14 +9,12 @@ const Express = require('express');
   Já que ao testar, não será criado um servidor
 */
 
-class AppController extends Express {
+class AppController {
   constructor() {
-    super();
     this.express = Express();
 
     this.middlewares();
     this.routes();
-
   }
 
   middlewares() {
@@ -24,4 +26,4 @@ class AppController extends Express {
   }
 }
 
-module.exports = new AppController().express
+module.exports = new AppController().express;
