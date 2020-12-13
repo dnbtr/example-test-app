@@ -21,7 +21,9 @@
 
 .logoutButtonWrapper {
   background: #13d3da;
+  border: 2px solid var(--secondary-background-color);
   border-radius: 100%;
+  outline: none !important;
   min-width: 72px;
   min-height: 72px;
 
@@ -29,6 +31,6 @@
   margin-right: 80px;
 }
 
-.logoutButtonWrapper>.logoutButton {
+.logoutButton {
   margin: 6px;
 }

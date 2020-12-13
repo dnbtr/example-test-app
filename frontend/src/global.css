@@ -1,11 +1,7 @@
 /* Definição das cores */
 :root {
-  --primary-text-color: #0B6A88;
-  --secondary-text-color: hsl(108, 23%, 17%);
-
   --primary-background-color: #19d3da;
   --primary-background-color-light: rgba(120, 234, 213, 0.85);
-
   --secondary-background-color: #e5e5e5;
 }
 
@@ -25,5 +21,9 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background-color: #e5e5e5;
+}
+
+.root {
   background-color: #e5e5e5;
 }
