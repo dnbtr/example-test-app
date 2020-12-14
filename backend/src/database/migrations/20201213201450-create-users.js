@@ -30,10 +30,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-    })
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
     return queryInterface.dropTable('users');
-  }
+  },
 };
