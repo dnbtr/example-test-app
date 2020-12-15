@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Container, Form, Image } from 'react-bootstrap';
 
-import axios from 'axios';
+import { Context } from '../../Context/authContext';
+
 import academiioBlueLogo from '../../assets/img/ACADEMIIO_BLUE.png';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
@@ -11,6 +12,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState();
+  const { authenticated, handleLogin } = useContext(Context);
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('token');
@@ -22,30 +24,43 @@ function Login() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // alert(`email = ${email}\npassword = ${password}`);
 
-    const user = { email, password };
-
-    try {
-      const response = await axios.post(
-        'http://localhost:8080/user-login',
-        user
-      );
-
-      if (response.status === 200) {
-        console.log(response.status);
-        setUser(response.data);
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('email', response.data.email);
-        return <Redirect push to='/home' />;
-      } else {
-        // Colocar modal
-        alert(response.status);
-      }
-    } catch (error) {
-      console.log(error.message);
+    const payload = {
+      email: email,
+      password: password
     }
-  };
+
+    console.debug('handleSubmit', payload);
+
+    handleLogin(payload);
+  }
+
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   // alert(`email = ${email}\npassword = ${password}`);
+
+  //   const user = { email, password };
+
+  //   try {
+  //     const response = await axios.post(
+  //       'http://localhost:8080/user-login',
+  //       user
+  //     );
+
+  //     if (response.status === 200) {
+  //       console.log(response.status);
+  //       setUser(response.data);
+  //       localStorage.setItem('token', response.data.token);
+  //       localStorage.setItem('email', response.data.email);
+  //       return <Redirect push to='/home' />;
+  //     } else {
+  //       // Colocar modal
+  //       alert(response.status);
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   return (
     <Container className='loginWidgetWrapper'>

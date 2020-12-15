@@ -3,12 +3,40 @@
 Aplicação CRUD simples para cadastro de conteúdos em ReactJS/NodeJS/ExpressJS.
 
 Pacotes utilizados
+Front-end
 - Boilerplate - create-react-app com template Typescript;
 - React-Bootstrap;
+- Typescript (apenas no front-end por hora)
+
+Backend
 - ExpressJS;
 - SequelizeORM
 - SQLite
-- Typescript (apenas no front-end por hora)
+
+#### Instruções
+- Executar `$ yarn install` nas pastas `backend` e `frontend` para instalar as dependências;
+- Executar `$ yarn migrate` na pasta `backend` para criar banco e tabelas SQLite (`$ yarn undo-migrate` desfaz as migrations);
+
+Para rodar:
+- Executar `$ yarn start` na pasta /backend (usando [concurrently](https://www.npmjs.com/package/concurrently) o frontend tb é inicializado)
+
+Ou:
+- `$ yarn dev` na pasta /backend para iniciar o backend no localhost:8080;
+- `$ yarn start` na pasta /backend para iniciar o frontend no localhost:3000;
+
+#### Documentação concisa das APIs
+- Sempre testar no **localhost:8080**
+
+- /user-create (POST)
+  - Request JSON - `{"name": [STRING], "email": [STRING], "password" [INTEGER] }`
+  - Response JSON - 
+- /user-login (POST)
+  - Request JSON - `{"email": [STRING], "password": [STRING] }`
+- /content-create (POST)
+  - Request JSON - `{"titulo": [STRING], "url": [STRING], "user_id" [INTEGER] }`
+- /content-get (GET)
+  - Request - `/content-get/:id - (Id do usuário é um INTEGER)`
+
 
 #### TODO :warning:
 **frontend**
@@ -16,20 +44,21 @@ Pacotes utilizados
   - [ ] Redirecionamento e persistencia da sessão;
 - [X] Página cadastro;
 - [X] Página para adicionar conteúdos;
-- [ ] Componentes de edição e exclusão de conteúdos;
 - [X] Página 404;
-- [ ] Terminar a estilização e fazer ajustes finais;
+
+Futuramente:
+- [ ] Componentes de edição e exclusão de conteúdos;
 - [ ] Refatorar tudo para Typescript;
 - [ ] Testes unitários e de integração;
 
 **backend**
 - [X] API Login;
 - [X] API Listagem conteúdos;
-  - [ ] Checagem de token de usuário na API;
 - [X] API Cadastro conteúdos;
-  - [ ] Checagem de token de usuário na API;
-- [ ] Implementar o middleware de autenticação (auth);
-- [ ] Usar a Context API para terminar o frontend;
+- [X] Implementar o middlewares de autenticação e validação;
+
+Futuramente:
+- [ ] Checagem de token de usuário nas APIs;
 - [ ] (opcional) API edição conteúdos;
 - [ ] (opcional) API exclusão conteúdos;
 - [ ] Refatorar tudo para Typescript;
@@ -38,22 +67,14 @@ Pacotes utilizados
 - [ ] Testes unitários e de integração;
 
 
-#### Instruções
-- Executar `$ yarn install` nas pastas `backend` e `frontend` para instalar as dependências de dev e prod;
-- Executar `$ yarn migrate` na pasta `backend` para criar banco e tabelas SQLite (`$ yarn undo-migrate` desfaz as migrations);
-- Integração de back e front end ainda não está concluída, mas o backend está funcional:
-- `$ yarn dev` para iniciar o backend no localhost:8080;
-
-Para o frontend:
-- Executar `$ yarn start` para iniciar no localhost:3000;
+#### Pontos a melhorar
+- Não é feita no Sequelize nenhuma checagem se as URLs cadastradas são únicas;
+- O endpoint /content-get está totalmente público e não restringe a consulta por usuário;
+- Melhorar a separação do código terminando de implementar MVC
+- Ainda há alguma redundância de código em alguns lugares
 
 #### Notas
 
 **frontend**
 - Foi utilizado o React-Bootstrap para quase todo o projeto, mas em algumas partes faltou fazer o override da estilização padrão;
 - O ícone FiPower só vem na cor preta, e não foi possível alterar mesmo usando o [IconContext](https://github.com/react-icons/react-icons#configuration);
-
-**backend**
-- Inicialmente seria usado o TypeORM, por ser melhor integrado com o Typescript. Uma pesquisa rápida mostra que o Sequelize é um ORM mais estável (atualizações constantes e menos issues no github).
-- Inicialmente, a idéia era usar Docker + PostgreSQL para o banco, mas foi usado o SQLite para agilizar a implementação
-- Ainda falta implementar arquitetura MVC, atualmente o código ainda está um pouco confuso.

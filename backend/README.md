@@ -1,4 +1,7 @@
-Passo a passo:
+#### Passo a passo (incompleto):
+
+- Ver notas na raiz do repositório
+- Essas notas são apenas de referência, para um possível tutorial.
 
 $ mkdir backend
 $ yarn init

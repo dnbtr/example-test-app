@@ -1,0 +1,9 @@
+.pagina404 {
+  min-width: 100vw;
+  min-height: 100vh;
+
+  background: var(--secondary-background-color);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
