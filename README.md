@@ -1,6 +1,6 @@
 ### example-test-app
 
-Aplicação CRUD simples para cadastro de conteúdos em ReactJS/NodeJS/ExpressJS.
+:computer: Aplicação CRUD simples para cadastro de conteúdos em ReactJS/NodeJS/ExpressJS.
 
 Pacotes utilizados
 Front-end
@@ -13,6 +13,8 @@ Backend
 - SequelizeORM
 - SQLite
 
+---
+
 #### Instruções
 - Executar `$ yarn install` nas pastas `backend` e `frontend` para instalar as dependências;
 - Executar `$ yarn migrate` na pasta `backend` para criar banco e tabelas SQLite (`$ yarn undo-migrate` desfaz as migrations);
@@ -24,30 +26,34 @@ Ou:
 - `$ yarn dev` na pasta /backend para iniciar o backend no localhost:8080;
 - `$ yarn start` na pasta /backend para iniciar o frontend no localhost:3000;
 
+---
+
 ##### Como usar
-O backend está basicamente 100% funcional:
+:thumbsup: O backend está basicamente 100% funcional:
   - O que falta é refatoração e reorganização da arquitetura do código;
   - Faltam algumas checagens e validações com o Yup para manter a consistência (mas não há erros não-tratados);
 
-O front end ainda não está 100%:
+:warning: O front end ainda não está 100%:
   - Ao logar, o redirecionamento não é feito da forma correta (a URL muda mas os componentes só carregam após um refresh);
   - Ao criar um usuário, não é feito redirecionamento automático para a página de login, e nem há aviso de erro (apenas no console);
   - Ao criar conteúdos, não há aviso de erro (apenas no console);
   - Ao fazer logout, o redirecionamento não está funcionando (apenas a checagem se está ou não logado. Ao fazer logout, a área logada deixa de ser renderizada pois a sessão é deletada do localStorage);
 
+---
+
 #### Documentação concisa das APIs
 - Sempre testar no **localhost:8080**
 
 - /user-create (POST)
-  - Request JSON - `{"name": [STRING], "email": [STRING], "password" [INTEGER] }`
-  - Response JSON - 
+  - Formato do request (JSON) - `{"name": [STRING], "email": [STRING], "password" [INTEGER] }`
 - /user-login (POST)
-  - Request JSON - `{"email": [STRING], "password": [STRING] }`
+  - Formato do request (JSON) - `{"email": [STRING], "password": [STRING] }`
 - /content-create (POST)
-  - Request JSON - `{"titulo": [STRING], "url": [STRING], "user_id" [INTEGER] }`
+  - Formato do request (JSON) - `{"titulo": [STRING], "url": [STRING], "user_id" [INTEGER] }`
 - /content-get (GET)
-  - Request - `/content-get/:id - (Id do usuário é um INTEGER)`
+  - Formato do request - `/content-get/:id - (Id do usuário é um INTEGER)`
 
+---
 
 #### TODO :warning:
 **frontend**
@@ -77,6 +83,7 @@ Futuramente:
 - [ ] Refatorar tudo para Typescript;
 - [ ] Testes unitários e de integração;
 
+---
 
 #### Pontos a melhorar
 - Não é feita no Sequelize nenhuma checagem se as URLs cadastradas são únicas;
@@ -85,6 +92,8 @@ Futuramente:
 - Melhorar o código relacionado aos erros do Sequelize (trazer de volta os erros para o front?);
 - Refatorar componentes do frontend e criar mais componentes e checagens para melhor usabilidade;
 - Ainda há alguma redundância de código em alguns lugares;
+
+---
 
 #### Notas
 
