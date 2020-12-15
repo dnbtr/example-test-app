@@ -44,13 +44,13 @@ Ou:
 #### Documentação concisa das APIs
 - Sempre testar no **localhost:8080**
 
-- /user-create (POST)
-  - Formato do request (JSON) - `{"name": [STRING], "email": [STRING], "password" [INTEGER] }`
-- /user-login (POST)
+- /user-create (POST) - *Criar usuário*
+  - Formato do request (JSON) - `{"name": [STRING], "email": [STRING], "password" [STRING] }`
+- /user-login (POST) - *Login de usuário*
   - Formato do request (JSON) - `{"email": [STRING], "password": [STRING] }`
-- /content-create (POST)
+- /content-create (POST) - *Criar um conteúdo associado a um usuário específico*
   - Formato do request (JSON) - `{"titulo": [STRING], "url": [STRING], "user_id" [INTEGER] }`
-- /content-get (GET)
+- /content-get (GET) - *Lista de todos os conteúdos de um usuário específico*
   - Formato do request - `/content-get/:id - (Id do usuário é um INTEGER)`
 
 ---
@@ -76,7 +76,7 @@ Futuramente:
 
 Futuramente:
 - [ ] **Terminar de implementar MVC;**
-- [ ] Melhorar tratamento de erros e retorno as mensagens (será feito com o MVC);
+- [ ] **Melhorar a arquitetura do banco** (checar por URLs repetidas para um mesmo usuário);
 - [ ] Checagem de token de usuário nas APIs;
 - [ ] API edição conteúdos;
 - [ ] API exclusão conteúdos;
