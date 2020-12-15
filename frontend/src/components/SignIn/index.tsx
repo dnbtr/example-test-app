@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Form, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -8,11 +8,28 @@ import './styles.css';
 import academiioBlueLogo from '../../assets/img/ACADEMIIO_BLUE.png';
 import { FiArrowLeft } from 'react-icons/fi';
 
+import api from '../../utils/api';
+
 function SignIn() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('submit');
+
+    try {
+      const request = await api.post('/user-create', {
+        name: name,
+        email: email,
+        password: password,
+      });
+      // const statusCode = request.request.status;
+    } catch (e) {
+      console.log(e.message);
+    }
   };
+
   return (
     <Container className='signInWidgetWrapper'>
       <Form
@@ -26,24 +43,36 @@ function SignIn() {
             <Form.Text>Faça o seu Cadastro</Form.Text>
           </Container>
 
-          <Link className='signInWidgetBackButton' to='/login'>
+          <Link className='signInWidgetBackButton' to='/'>
             <FiArrowLeft /> Voltar ao login
           </Link>
         </Container>
 
         <Form.Group controlId='formBasicEmail'>
           <Form.Label>Nome Completo</Form.Label>
-          <Form.Control type='name' placeholder='Nome completo' />
+          <Form.Control
+            type='name'
+            placeholder='Nome completo'
+            onChange={({ target }) => setName(target.value)}
+          />
         </Form.Group>
 
         <Form.Group controlId='formBasicEmail'>
           <Form.Label>E-mail</Form.Label>
-          <Form.Control type='email' placeholder='exemplo@exemplo.com' />
+          <Form.Control
+            type='email'
+            placeholder='exemplo@exemplo.com'
+            onChange={({ target }) => setEmail(target.value)}
+          />
         </Form.Group>
 
         <Form.Group controlId='formBasicPassword'>
           <Form.Label>Senha</Form.Label>
-          <Form.Control type='password' placeholder='Insira sua senha' />
+          <Form.Control
+            type='password'
+            placeholder='Insira sua senha'
+            onChange={({ target }) => setPassword(target.value)}
+          />
         </Form.Group>
 
         <Button variant='primary' type='submit' block={true}>
@@ -51,27 +80,6 @@ function SignIn() {
         </Button>
       </Form>
     </Container>
-
-    /* 
-    <div className='loginWidgetWrapper'>
-      <form className='loginWidgetForm'>
-        <header>
-          <h1>ACADEMIIO</h1>
-          <p>Faça login para continuar</p>
-        </header>
-
-        <div>
-          Email <input type='text'></input>
-          Senha <input type='password'></input>
-        </div>
-        <div>
-          <input type='checkbox'></input> Me manter logado
-          <button>ENTRAR</button>
-          Ainda não tem uma conta? <a>Cadastre-se</a>
-        </div>
-      </form>
-    </div>
-     */
   );
 }
 

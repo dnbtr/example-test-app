@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import academiioLogoWhite from '../../assets/img/ACADEMIIO_WHITE.png';
-import { FiPower } from 'react-icons/fi';
+import React, { useState, useContext } from 'react';
+import { Context } from '../../Context/authContext';
 import { Button, Container, Modal } from 'react-bootstrap';
+import { FiPower } from 'react-icons/fi';
+
+import academiioLogoWhite from '../../assets/img/ACADEMIIO_WHITE.png';
 
 import './styles.css';
 
@@ -10,6 +12,8 @@ function Menu() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const { handleLogout } = useContext(Context);
+
 
   return (
     <Container className='menu' as='div'>
@@ -29,7 +33,7 @@ function Menu() {
           </Modal.Header>
           <Modal.Body>Você deseja fazer logout?</Modal.Body>
           <Modal.Footer>
-            <Button variant='secondary' onClick={handleClose}>
+            <Button variant='secondary' onClick={handleLogout}>
               Sim
             </Button>
             <Button variant='primary' onClick={handleClose}>

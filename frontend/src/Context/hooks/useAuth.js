@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import api from '../../utils/api';
 import history from '../../history';
 
@@ -20,51 +21,44 @@ export default function useAuth() {
     setLoading(false);
   }, []);
 
-  async function handleLogin({ user }) {
-
-    // const { data: { token },} = await api.post('/user-login');
-    const token = 'asdasd';
-
-      const data = user;
-      console.debug('handleLogin', data);
+  async function handleLogin(payload) {
 
     try {
-      const response = await api.post(
-        '/user-login',
-        data
-      );
-
-      console.debug('response', response);
+      let response = await api.post('/user-login', payload);
 
       if (response.status === 200) {
-        console.log(response.status);
-        // localStorage.setItem('token', response.data.token);
-        // localStorage.setItem('email', response.data.email);
-        // return <Redirect push to='/home' />;
+
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+        localStorage.setItem('email', response.data.email);
+        localStorage.setItem('id', response.data.id);
+
+        // Seta o token recebido como o default para todas as requisições
+        api.defaults.headers.Authorization = `Bearer ${response.token}`;
+
+        // Seta a flag como true e redireciona para a home
+        setAuthenticated(true);
+        history.push('/area_logada');
+        return <Redirect to='/area_logada' />
+
       } else {
-        // Colocar modal
-        alert(response.status);
+        console.log(response);
       }
     } catch (error) {
       console.log(`Error handleLogin - ${error.message}`);
+
+      // Setar uma variável para mostrar o erro no componente de login
     }
-
-    localStorage.setItem('token', JSON.stringify(token));
-
-    // Por default sempre irá mandar o token no header das requisições
-    api.defaults.headers.Authorization = `Bearer ${token}`;
-
-    // Redireciona para a página users
-    setAuthenticated(true);
-    // console.log(`authenticated value = ${authenticated}`); // Pq vem como false? O setAuthenticated só é setado quando o DOM é atualizado?
-    history.push('/home');
   }
 
   function handleLogout() {
+    console.log('handleLogout event');
     setAuthenticated(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
     api.defaults.headers.Authorization = undefined;
     history.push('/');
+    return <Redirect to='/' />
   }
 
   return { authenticated, loading, handleLogin, handleLogout };

@@ -15,8 +15,8 @@ const routes = require('express').Router();
 */
 
 routes.post('/user-login', async (req, res) => {
-  // const { email, password } = req.body;
 
+  console.debug('request: ', req.body);
   const request = await loginValidator(req);
 
   if (request.errors) {
@@ -59,6 +59,8 @@ routes.post('/user-login', async (req, res) => {
 
 routes.post('/user-create', async (req, res) => {
   const { name, email, password } = req.body;
+
+  console.debug('request: ', req.body);
 
   try {
     const saveUser = await User.create({

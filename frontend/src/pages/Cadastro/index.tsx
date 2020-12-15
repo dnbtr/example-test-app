@@ -1,12 +1,12 @@
 import React from 'react';
-import Login from '../../components/Login';
+import SignIn from '../../components/SignIn';
 
 import './styles.css';
 
-export default function Inicio() {
+export default function Cadastro() {
   return (
     <div className='paginaInicial'>
-      <Login />
+      <SignIn />
     </div>
   );
 }

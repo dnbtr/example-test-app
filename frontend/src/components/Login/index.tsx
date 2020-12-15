@@ -30,37 +30,8 @@ function Login() {
       password: password
     }
 
-    console.debug('handleSubmit', payload);
-
     handleLogin(payload);
   }
-
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   // alert(`email = ${email}\npassword = ${password}`);
-
-  //   const user = { email, password };
-
-  //   try {
-  //     const response = await axios.post(
-  //       'http://localhost:8080/user-login',
-  //       user
-  //     );
-
-  //     if (response.status === 200) {
-  //       console.log(response.status);
-  //       setUser(response.data);
-  //       localStorage.setItem('token', response.data.token);
-  //       localStorage.setItem('email', response.data.email);
-  //       return <Redirect push to='/home' />;
-  //     } else {
-  //       // Colocar modal
-  //       alert(response.status);
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
 
   return (
     <Container className='loginWidgetWrapper'>
